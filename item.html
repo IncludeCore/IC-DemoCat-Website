@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="/resources/style.css" />
+    <script type="module">
+      // Load only global items since we don't need screen elements
+      fetch(
+        "https://www.includecore.com/api/projects/4839/globals/7238-globals",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then((data) => {
+          document.getElementById("logo").src = data.logo;
+          document.querySelector("footer").textContent = data.footer;
+        })
+        .catch((error) =>
+          alert("Something went wrong, please try again later.")
+        );
+
+      const articleId = new URL(window.location.href).searchParams.get("id");
+      // Load the article
+      fetch(
+        "https://www.includecore.com/api/projects/4839/databases/7241-Blog%20Articles/entries/" +
+          articleId,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then((data) => {
+          // Set the article
+          document.getElementById("title").textContent = data.title;
+          document.getElementById("cover").src = data.cover;
+          document.getElementById("article").innerHTML = data.content;
+        })
+        .catch((error) => document.getElementById("title").textContent = "Article not found");
+    </script>
+  </head>
+  <body>
+    <div id="blog" class="container">
+      <header class="flex align-items-center space-between">
+        <div>
+          <img id="logo" />
+        </div>
+        <div>
+          <a href="/">Home Page</a>
+          <span class="slash-separator">/</span>
+          <a class="active" href="/articles.html">What’s Happening</a>
+          <span class="slash-separator">/</span>
+          <a href="/about-us.html">About</a>
+          <span class="slash-separator">/</span>
+          <a href="/contact-cat.html">Contact Cat</a>
+        </div>
+      </header>
+      <div>
+        <h1 id="title"></h1>
+        <hr />
+        <img id="cover" />
+        <div id="article"></div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>

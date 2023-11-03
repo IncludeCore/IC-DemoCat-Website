@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cat Website</title>
+  <link rel="stylesheet" href="/resources/style.css" />
+  <script type="module">
+    // Load the home page screen
+    fetch(
+      "https://www.includecore.com/api/projects/4839/screens/7243-Home%20Page",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    )
+      .then((response) => response.ok ? response.json() : Promise.reject())
+      .then((data) => {
+        // Set the logo, footer, headline and headline paragraph
+        document.getElementById("logo").src = data.globals.logo;
+        document.querySelector("footer").textContent = data.globals.footer;
+        document.getElementById("headline").textContent = data.screen.headline;
+        document.getElementById("headline_paragraph").textContent = data.screen.headline_paragraph;
+        // Set the "slider" pictures and buttons
+        data.screen.main_pictures.forEach((picture, index) => {
+          const pictureElement = document.createElement("img");
+          pictureElement.src = picture;
+          pictureElement.classList.add("slider-picture", "none");
+          pictureElement.setAttribute("data-index", index);
+          const buttonElement = document.createElement("button");
+          buttonElement.classList = "slider-button";
+          buttonElement.addEventListener("click", () => {
+            if (buttonElement.classList.contains("active")) return;
+            document.querySelectorAll(".slider-button").forEach((button) => button.classList.remove("active"));
+            buttonElement.classList.add("active");
+            document.querySelectorAll(".slider-picture").forEach((picture) => picture.classList.add("none"));
+            document.querySelector(`.slider-picture[data-index='${index}']`).classList.remove("none");
+          });
+          document.getElementById("main_pictures").appendChild(pictureElement);
+          document.getElementById("main_pictures_buttons").appendChild(buttonElement);
+          if (index === 0) buttonElement.click();
+        });
+      });
+  </script>
+</head>
+
+<body>
+  <div id="home" class="container">
+    <header class="flex align-items-center space-between">
+      <div>
+        <img id="logo" />
+      </div>
+      <div>
+        <a class="active" href="/">Home Page</a>
+        <span class="slash-separator">/</span>
+        <a href="/articles.html">What’s Happening</a>
+        <span class="slash-separator">/</span>
+        <a href="/about-us.html">About</a>
+        <span class="slash-separator">/</span>
+        <a href="/contact-cat.html">Contact Cat</a>
+      </div>
+    </header>
+    <div class="flex align-items-center space-between">
+      <div>
+        <h1 id="headline"></h1>
+        <p id="headline_paragraph"></p>
+      </div>
+      <div>
+        <div id="main_pictures"></div>
+        <div class="text-right" id="main_pictures_buttons"></div>
+      </div>
+    </div>
+    <footer></footer>
+  </div>
+</body>
+
+</html>

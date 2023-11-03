@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Web Agency Website</title>
+    <link rel="stylesheet" href="/resources/style.css" />
+    <script type="module">
+      // Load the contact us screen
+      fetch(
+        "https://www.includecore.com/api/projects/4839/screens/7244-Contact%20Us",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then((data) => {
+          // Set the logo, footer and title
+          document.getElementById("logo").src = data.globals.logo;
+          document.querySelector("footer").textContent = data.globals.footer;
+          document.getElementById("title").textContent = data.screen.title;
+        })
+        .catch((error) => console.error(error));
+
+        document.getElementById('contact-cat-form').addEventListener('submit', (event) => {
+          event.preventDefault();
+          const formData = new FormData(event.target);
+          fetch(event.target.action, {
+            method: event.target.method,
+            headers: {
+              Accept: 'application/json',
+            },
+            body: formData,
+          })
+            .then((response) => response.ok ? response.json() : Promise.reject())
+            .then((data) => alert('Thank you for your message, we will get back to you soon.'))
+            .catch((error) => alert('Something went wrong, please try again later.'));
+        });
+    </script>
+  </head>
+  <body>
+    <div id="contact" class="container">
+      <header class="flex align-items-center space-between">
+        <div>
+          <img id="logo" />
+        </div>
+        <div>
+          <a href="/">Home Page</a>
+          <span class="slash-separator">/</span>
+          <a href="/articles.html">What’s Happening</a>
+          <span class="slash-separator">/</span>
+          <a href="/about-us.html">About</a>
+          <span class="slash-separator">/</span>
+          <a class="active" href="/contact-cat.html">Contact Cat</a>
+        </div>
+      </header>
+      <div>
+        <h1 id="title"></h1>
+        <hr/>
+        <form id="contact-form" action="https://www.includecore.com/api/projects/4839/databases/7239-Contact%20Form" method="post">
+          <input type="text" name="name" required placeholder="Name" />
+          <br/><br/>
+          <input type="email" name="email" required placeholder="Email" />
+          <br/><br/>
+          <div class="flex">
+            <textarea maxlength="1000" name="message" required placeholder="Message"></textarea>
+            <button type="submit"></button>
+          </div>
+        </form>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>

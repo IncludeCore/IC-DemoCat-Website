@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Web Agency Website</title>
+    <link rel="stylesheet" href="/resources/style.css" />
+    <script type="module">
+      // Load the about us screen
+      fetch(
+        "https://www.includecore.com/api/projects/4839/screens/7240-About%20Us",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then((data) => {
+          // Set the logo, footer, title and friends
+          document.getElementById("logo").src = data.globals.logo;
+          document.querySelector("footer").textContent = data.globals.footer;
+          document.getElementById('title').textContent = data.screen.title;
+          data.screen.friends.forEach(friend => {
+            const friendElement = document.createElement('div');
+            friendElement.classList.add('friend');
+            const friendPhoto = document.createElement('img');
+            friendPhoto.classList.add('picture');
+            friendPhoto.src = friend.picture;
+            friendElement.appendChild(friendPhoto);
+            const friendName = document.createElement('div');
+            friendName.textContent = friend.name;
+            friendElement.appendChild(friendName);
+            const friendDesc = document.createElement('div');
+            friendDesc.textContent = friend.description;
+            friendElement.appendChild(friendDesc);
+            document.getElementById('friends').appendChild(friendElement);
+          });
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </head>
+  <body>
+    <div id="about" class="container">
+      <header class="flex align-items-center space-between">
+        <div>
+          <img id="logo" />
+        </div>
+        <div>
+          <a href="/">Home Page</a>
+          <span class="slash-separator">/</span>
+          <a href="/articles.html">What’s Happening</a>
+          <span class="slash-separator">/</span>
+          <a class="active" href="/about-us.html">About</a>
+          <span class="slash-separator">/</span>
+          <a href="/contact-cat.html">Contact Cat</a>
+        </div>
+      </header>
+      <div>
+        <h1 id="title"></h1>
+        <hr />
+        <div id="friends"></div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>

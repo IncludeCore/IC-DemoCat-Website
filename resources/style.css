@@ -1,0 +1,193 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: url('/resources/bg.png'); 
+}
+
+h1,h2,h3,h4,h5,h6,a {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+h1,h2,h3,h4,h5,h6,a.active {
+    color: #FF21FB;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+header {
+    margin-bottom: 80px;
+    padding-top: 10px;
+}
+
+footer {
+    margin-top: 150px;
+}
+
+article {
+    margin-bottom: 25px;
+}
+
+ul.no-bullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+}
+
+input[type=text], input[type=email], textarea {
+    width: 100%;
+    max-width: 350px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 150px;
+}
+
+.flex {
+    display: flex;
+}
+
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.slider-button {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    background-image: url('/resources/slider-button-inactive.svg');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+.slider-button.active {
+    background-image: url('/resources/slider-button-active.svg');
+}
+
+.slash-separator {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+#logo {
+    width: 48px;
+}
+
+#home #main_pictures, #home #main_pictures_buttons{
+    width: 350px;
+    text-align: right;
+}
+
+#home #main_pictures_buttons {
+    margin-top: 10px;
+}
+
+#home #headline_paragraph {
+    max-width: 480px;
+}
+
+#contact #contact-form {
+    margin-top: 20px;
+}
+
+#blog #articles {
+    margin-top: 50px;
+}
+
+#blog #pagination {
+    margin-top: 50px;
+    text-align: right;
+}
+
+#blog #pagination .pagination-image {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('/resources/slider-button-inactive.svg');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+}
+
+#blog #pagination .pagination-image.active {
+    background-image: url('/resources/slider-button-active.svg');
+}
+
+#blog #articles .cover-list{
+    height: 250px;
+    width: auto;
+}
+
+#about #friends {
+    margin-top: 50px;
+}
+
+#about .friend {
+    display: inline-block;
+    width: 33.33%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#about .friend .picture {
+    width: auto;
+    height: 250px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+
+#contact #contact-form button[type=submit] {
+    background-image: url('/resources/submit.svg');
+    background-repeat: no-repeat;
+    background-size: 80px;
+    background-position: center;
+    width: 80px;
+    height: 80px;
+    border: none;
+    background-color: initial;
+    margin-top: auto;
+    margin-left: 15px;
+}

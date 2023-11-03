@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articles - Web Agency Website</title>
+    <link rel="stylesheet" href="/resources/style.css" />
+    <script type="module">
+      // Load the articles list screen
+      fetch(
+        "https://www.includecore.com/api/projects/4839/screens/7250-Articles%20List",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then((data) => {
+          document.getElementById("logo").src = data.globals.logo;
+          document.querySelector("footer").textContent = data.globals.footer;
+          document.getElementById("title").textContent = data.screen.title;
+        })
+        .catch((error) =>
+          alert("Something went wrong, please try again later.")
+        );
+
+      const articlesPage =
+        new URL(window.location.href).searchParams.get("page") ?? 1;
+
+      // Load the articles, 5 per page
+      fetch(
+        "https://www.includecore.com/api/projects/4839/databases/7241-Blog%20Articles?pageSize=5&page=" +
+          articlesPage,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then((result) => {
+          // Set the articles
+          result.data.forEach((article) => {
+            const articleElementAnchor = document.createElement("a");
+            articleElementAnchor.href = "/item.html?id=" + article.id;
+            const articleElement = document.createElement("article");
+            articleElement.classList.add("flex");
+            const articleImageElement = document.createElement("img");
+            articleImageElement.classList.add("cover-list");
+            articleImageElement.src = article.cover;
+            articleElement.appendChild(articleImageElement);
+            const articleContainerElement = document.createElement("div");
+            articleContainerElement.classList.add("ml-30");
+            const articleTitle = document.createElement("h2");
+            articleTitle.classList.add("mt-0");
+            articleTitle.textContent = article.title;
+            const articleDesc = document.createElement("div");
+            articleDesc.textContent = article.short_desc;
+            articleContainerElement.appendChild(articleTitle);
+            articleContainerElement.appendChild(articleDesc);
+            articleElement.appendChild(articleContainerElement);
+            articleElementAnchor.appendChild(articleElement);
+            document.getElementById("articles").appendChild(articleElementAnchor);
+          });
+
+          // set pagination
+          const paginationElement = document.getElementById("pagination");
+          const totalPages = result.pagination.last_page;
+          for (let i = 1; i <= totalPages; i++) {
+            const pageElement = document.createElement("a");
+            pageElement.classList.add("pagination-image");
+            if (i == articlesPage) {
+              pageElement.classList.add("active");
+            } else {
+              pageElement.href = "/articles.html?page=" + i;
+            }
+            paginationElement.appendChild(pageElement);
+          }
+        })
+        .catch((error) =>
+          alert("Error loading articles, please try again later.")
+        );
+    </script>
+  </head>
+  <body>
+    <div id="blog" class="container">
+      <header class="flex align-items-center space-between">
+        <div>
+          <img id="logo" />
+        </div>
+        <div>
+          <a href="/">Home Page</a>
+          <span class="slash-separator">/</span>
+          <a class="active" href="/articles.html">What’s Happening</a>
+          <span class="slash-separator">/</span>
+          <a href="/about-us.html">About</a>
+          <span class="slash-separator">/</span>
+          <a href="/contact-cat.html">Contact Cat</a>
+        </div>
+      </header>
+      <div>
+        <h1 id="title"></h1>
+        <hr />
+        <div id="articles"></div>
+        <div id="pagination"></div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>
