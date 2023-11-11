@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Articles - Web Agency Website</title>
+    <title>Demo Cats</title>
     <link rel="stylesheet" href="/resources/style.css" />
     <script type="module">
       // Load the articles list screen
@@ -89,21 +89,23 @@
     <div id="blog" class="container">
       <header class="flex align-items-center space-between">
         <div>
-          <img id="logo" />
+          <a href="/"><img id="logo" /></a>
         </div>
         <div>
-          <a href="/">Home Page</a>
-          <span class="slash-separator">/</span>
-          <a class="active" href="/articles.html">What’s Happening</a>
-          <span class="slash-separator">/</span>
-          <a href="/about-us.html">About</a>
-          <span class="slash-separator">/</span>
-          <a href="/contact-cat.html">Contact Cat</a>
+          <div>
+            <a href="/">HOME</a>
+            <span class="slash-separator">/</span>
+            <a class="active" href="/articles.html">WHAT’S HAPPENING</a>
+            <span class="slash-separator">/</span>
+            <a href="/about-us.html">CAT TEAM</a>
+            <span class="slash-separator">/</span>
+            <a href="/contact-cat.html">CONTACT US</a>
+          </div>
         </div>
       </header>
       <div>
         <h1 id="title"></h1>
-        <hr />
+        <hr class="horline" />
         <div id="articles"></div>
         <div id="pagination"></div>
       </div>

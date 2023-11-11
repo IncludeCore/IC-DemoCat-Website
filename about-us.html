@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - Web Agency Website</title>
+    <title>Demo Cats</title>
     <link rel="stylesheet" href="/resources/style.css" />
     <script type="module">
       // Load the about us screen
@@ -31,6 +31,7 @@
             friendElement.appendChild(friendPhoto);
             const friendName = document.createElement('div');
             friendName.textContent = friend.name;
+            friendName.classList.add('friendNameBig');
             friendElement.appendChild(friendName);
             const friendDesc = document.createElement('div');
             friendDesc.textContent = friend.description;
@@ -45,21 +46,21 @@
     <div id="about" class="container">
       <header class="flex align-items-center space-between">
         <div>
-          <img id="logo" />
+          <a href="/"><img id="logo" /></a>
         </div>
         <div>
-          <a href="/">Home Page</a>
+          <a href="/">HOME</a>
           <span class="slash-separator">/</span>
-          <a href="/articles.html">What’s Happening</a>
+          <a href="/articles.html">WHAT’S HAPPENING</a>
           <span class="slash-separator">/</span>
-          <a class="active" href="/about-us.html">About</a>
+          <a class="active" href="/about-us.html">CAT TEAM</a>
           <span class="slash-separator">/</span>
-          <a href="/contact-cat.html">Contact Cat</a>
+          <a href="/contact-cat.html">CONTACT US</a>
         </div>
       </header>
       <div>
         <h1 id="title"></h1>
-        <hr />
+        <hr class="horline"/>
         <div id="friends"></div>
       </div>
       <footer></footer>
