@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Demo Cats</title>
+    <title>Demo Cats - Paws &amp; Profiles</title>
     <link rel="stylesheet" href="/resources/style.css" />
     <script type="module">
       // Load the articles list screen
@@ -45,7 +45,7 @@
           // Set the articles
           result.data.forEach((article) => {
             const articleElementAnchor = document.createElement("a");
-            articleElementAnchor.href = "/item.html?id=" + article.id;
+            articleElementAnchor.href = "/blog_article.html?id=" + article.id;
             const articleElement = document.createElement("article");
             articleElement.classList.add("flex");
             const articleImageElement = document.createElement("img");
@@ -95,11 +95,11 @@
           <div>
             <a href="/">HOME</a>
             <span class="slash-separator">/</span>
-            <a class="active" href="/articles.html">WHAT’S HAPPENING</a>
+            <a class="active" href="/blog.html">BLOG</a>
             <span class="slash-separator">/</span>
-            <a href="/about-us.html">CAT TEAM</a>
+            <a href="/about_us.html">ABOUT US</a>
             <span class="slash-separator">/</span>
-            <a href="/contact-cat.html">CONTACT US</a>
+            <a href="/contact.html">CONTACT</a>
           </div>
         </div>
       </header>
