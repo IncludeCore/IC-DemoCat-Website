@@ -23,6 +23,10 @@ a {
     color: #666666;
 }
 
+article {
+    margin-bottom: 30px;
+}
+
 header {
     height: 80px;
     margin-top: 20px;
